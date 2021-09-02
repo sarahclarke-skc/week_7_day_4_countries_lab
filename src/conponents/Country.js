@@ -1,3 +1,4 @@
+import { auto } from 'async';
 import React from 'react';
 
 const Country = ({country, onCountryClick}) => {
@@ -13,9 +14,7 @@ const Country = ({country, onCountryClick}) => {
 
     const listStyle = {
         background: 'green',
-        width: '300px',
-        color: 'white',
-        cursor: 'pointer'
+        width: '300px'
     }
 
     return (
