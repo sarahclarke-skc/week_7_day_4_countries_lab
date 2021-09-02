@@ -24,7 +24,7 @@ const CountriesContainer = () => {
 
     return (
         <>
-        <h2>This is a countries container</h2>
+        <h2>The total population of our overpopulated planet: {population}</h2>
         <CountryList countries={countries}/>
         </>
     )
