@@ -1,11 +1,13 @@
 import React , {useState, useEffect} from 'react';
 import CountryDetail from '../conponents/CountryDetail';
 import CountryList from '../conponents/CountryList';
+import Favourite from '../conponents/Favourite';
 
 const CountriesContainer = () => {
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState(null);
+    const [favouriteCountry, setFavouriteCountry] = useState([]);
     
     useEffect(() => {
         getCountries();
@@ -14,6 +16,12 @@ const CountriesContainer = () => {
     const onCountryClick = (country) => {
         setSelectedCountry(country)
     }
+
+    const onFaveClick = (country) => {
+        const favList = [...favouriteCountry, country]
+        setFavouriteCountry(favList)
+    }
+    
 
     const getCountries = function () {
         fetch('https://restcountries.eu/rest/v2/all')
@@ -32,7 +40,10 @@ const CountriesContainer = () => {
         <>
         <h2>The total population of our overpopulated planet: {population}</h2>
         <CountryList countries={countries} onCountryClick={onCountryClick}/>
-        {selectedCountry ? <CountryDetail country={selectedCountry}/> : null}
+        {selectedCountry ? <CountryDetail onFaveClick={onFaveClick} country={selectedCountry}/> : null}
+        {selectedCountry ? <Favourite countries={favouriteCountry}/> : []}
+        
+
         </>
     )
 };
