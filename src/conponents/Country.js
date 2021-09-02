@@ -12,9 +12,16 @@ const Country = ({country, onCountryClick}) => {
         width: '70px'
     }
 
+    const listStyle = {
+        background: 'green',
+        width: '300px'
+    }
+
     return (
         <>
-            <li onMouseOver={handleClick}><img style={image} src={country.flag}></img>{country.name}</li>
+            <div style={listStyle} onMouseOver={handleClick}>
+                <li><img style={image} src={country.flag}></img>{country.name}</li>
+            </div>
         </>
     
     )
