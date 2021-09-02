@@ -1,10 +1,11 @@
 import React from 'react';
+import Country from './Country'
 
-const CountryList = ({countries}) => {
+const CountryList = ({countries, onCountryClick}) => {
 
     const countryItems = countries.map((country, index)=> {
-        return <li>{country.name}</li>
-    }) 
+        return <Country country={country} key={index} onCountryClick={onCountryClick}/>
+    }); 
 
     return (
         <>

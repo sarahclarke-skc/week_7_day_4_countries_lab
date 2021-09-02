@@ -1,13 +1,19 @@
 import React , {useState, useEffect} from 'react';
+import CountryDetail from '../conponents/CountryDetail';
 import CountryList from '../conponents/CountryList';
 
 const CountriesContainer = () => {
 
     const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
     
     useEffect(() => {
         getCountries();
     }, []);
+
+    const onCountryClick = (country) => {
+        setSelectedCountry(country)
+    }
 
     const getCountries = function () {
         fetch('https://restcountries.eu/rest/v2/all')
@@ -25,7 +31,8 @@ const CountriesContainer = () => {
     return (
         <>
         <h2>The total population of our overpopulated planet: {population}</h2>
-        <CountryList countries={countries}/>
+        <CountryList countries={countries} onCountryClick={onCountryClick}/>
+        {selectedCountry ? <CountryDetail country={selectedCountry}/> : null}
         </>
     )
 };
